@@ -1,0 +1,32 @@
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<transport name="http" pivot="java:org.apache.axis.transport.http.HTTPSender"/>
+	<globalConfiguration>
+		<requestFlow>
+			<!-- Uncomment the following stanza to enable authentification -->
+			<handler type="java:org.apache.ws.axis.security.WSDoAllSender">
+				<parameter name="action" value="UsernameToken"/>
+				<parameter name="passwordType" value="PasswordText"/>
+			</handler>
+			<!-- Uncomment the following stanza to enable encryption -->
+			<!--
+			<handler type="java:org.apache.ws.axis.security.WSDoAllSender">
+				<parameter name="action" value="Encrypt"/>
+				<parameter name="encryptionPropFile" value="cryptoTH.properties"/>
+				<parameter name="user" value="thunderheadAPI"/>
+				<parameter name="encryptionKeyIdentifier" value="X509KeyIdentifier"/>
+				<parameter name="encryptionParts" value="{Element}{http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd}UsernameToken"/>
+			</handler>
+			-->
+			<!-- Uncomment the following stanza to enable Timestamp -->
+			
+			<handler type="java:org.apache.ws.axis.security.WSDoAllSender">
+		                <parameter name="action" value="Timestamp"/>
+                        </handler>
+			
+			<!-- Uncomment the following stanza to enable trace to console -->
+			<!--			
+			<handler type="java:test.TraceHandler"/>
+			-->
+		</requestFlow>
+	</globalConfiguration>
+</deployment>
